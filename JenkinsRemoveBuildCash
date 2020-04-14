@@ -1,0 +1,9 @@
+*Go to manage jenkins
+*Go to Jenkins console
+*Enter build name => Build_Name
+
+def jobName = "Build_Name"  
+def job = Jenkins.instance.getItem(jobName)  
+job.getBuilds().each { it.delete() }  
+job.nextBuildNumber = 1   
+job.save()
