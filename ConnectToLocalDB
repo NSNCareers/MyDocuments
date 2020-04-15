@@ -1,0 +1,4 @@
+Data Source: Microsoft SQL Server (SqlClient)
+Server name: (localdb)\MSSQLLocalDB
+Log on to the server: Use Windows Authentication
+Select your DB ( Check DB name from connection string)
