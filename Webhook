@@ -1,0 +1,6 @@
+Go to your project settings
+Go to wehook
+Enter jenkins server url plus the webhook url
+=> http://134.209.23.238:8080/github-webhook/
+Select json
+Add webhook
