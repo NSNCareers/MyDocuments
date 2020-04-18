@@ -1,0 +1,86 @@
+Install Jenkins Master
+
+**********
+Configure Jenkins Master Credentials
+-On the Jenkins master server, login to the Jenkins user and generate the ssh key.
+su - jenkins
+ssh-keygen
+-And you will get the 'id_rsa' private and 'id_rsa.pub' public key in the '.ssh' directory.
+-Open your Jenkins dashboard and click on the 'Credentials' menu on the left.
+-And click the 'global' domain link.
+-Now click 'Add Credentials'.
+-Now choose the authentication method.
+Kind: SSH Username with private key
+Scope: Global
+Username: jenkins
+Private key: Enter directly and paste the 'id_rsa' private key of Jenkins user from the master server.
+-And the Jenkins credential with ssh auth key method have been created.
+**********
+
+Set up Slave Nodes
+**********
+Now we will setup slave nodes server by installing java on those server, and create a new Jenkins user.
+
+Install Java
+***********
+-Install the 'software-properties-common' packages and add the java PPA repository.
+sudo apt install software-properties-common apt-transport-https -y
+sudo add-apt-repository ppa:openjdk-r/ppa -y
+-Now install java OpenJDK using apt command below.
+sudo apt install openjdk-8-jdk -y
+-After the installation is complete, check the installed java version.
+java -version
+-And you will get Java OpenJDK 1.8 installed on the system.
+**********
+Delete User
+***********
+sudo deluser --remove-home ${User}
+***********
+
+Add New Jenkins User
+************
+-Now add the 'Jenkins' user to all agent nodes.
+useradd -m -s /bin/bash jenkins
+update password => sudo passwd jenkins
+
+
+Copy the SSH Key from Master to Slave
+*************
+****If you created droplet with password****
+Next, we need to upload the key 'id_rsa.pub' from the master to slave server nodes. We need to upload to 
+each server nodes using 'ssh-copy-id' command as below.
+ssh-copy-id jenkins@10.0.15.22
+
+****If you created droplet with sshKey****
+-On your local machine, output the contents of your public key.
+cat ~/.ssh/id_rsa.pub
+Copy the output.
+Log in to your Droplet using your local terminal and 
+create the ~/.ssh directory if it does not already exist:
+mkdir -p ~/.ssh
+-You'll need to add your SSH key to an authorized_keys file in this directory. The public keys listed in that file are the ones that can be used to log in to the server as this user.
+
+Create and open the ~/.ssh/authorized_keys file for editing using a terminal-based text editor, like nano.
+vim ~/.ssh/authorized_keys
+-Make sure the permissions and ownership of the files are correct.
+chmod -R go= ~/.ssh
+chown -R $USER:$USER ~/.ssh
+-You can now log out of your Droplet. The next time you log in, you can do so without a password.
+
+Add New Slave Nodes
+***********
+On the Jenkins dashboard, click the 'Manage Jenkins' menu, and click 'Manage Nodes'.
+Click the 'New Node'.
+Type the node name 'slave01', choose the 'permanent agent', and click 'OK'.
+-Now type node information details.
+Description: slave01 node agent server
+Remote root directory: /home/jenkins
+Labels: slave01
+Launch method: Launch slave agent via SSH, type the host ip address '10.0.15.21', 
+choose the authentication using 'Jenkins' credential.
+-Now click 'Save' button and wait for the master server to connect to all agent nodes and launch the agent services.
+
+
+
+
+
