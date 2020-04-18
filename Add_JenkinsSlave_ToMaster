@@ -1,3 +1,7 @@
+Private and public keys have to always match. If you are accessing a machin then use the keys of 
+that machine to match the remote machine or else you will get access denied.
+
+
 Install Jenkins Master
 
 **********
