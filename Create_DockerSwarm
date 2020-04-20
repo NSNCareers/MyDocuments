@@ -21,3 +21,10 @@ docker service create --name webserver -p 80:80 httpd
 docker service ls
 docker service scale webserver=2
 docker service ps webserver
+
+
+docker stack ps tangoCharlie
+docker stack rm tangoCharlie
+docker logs -f container-id-
+docker swarm leave —force
+
