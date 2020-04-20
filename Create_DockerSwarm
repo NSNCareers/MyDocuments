@@ -14,3 +14,10 @@ sudo systemctl restart docker
 
 Create Docker Swarm cluster
 docker swarm init --advertise-addr ${IP-Master node}
+
+
+docker node ls
+docker service create --name webserver -p 80:80 httpd
+docker service ls
+docker service scale webserver=2
+docker service ps webserver
