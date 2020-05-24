@@ -1,0 +1,1 @@
+cp -rpP /etc/ansible/* . (Copy folder contents)
