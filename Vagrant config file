@@ -1,0 +1,105 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+
+
+  # Ubuntu machine 1
+
+  config.vm.define "ubuntu" do |vm1|
+  vm1.vm.box = "ubuntu/trusty64"
+  vm1.vm.box_check_update = true
+  vm1.vm.network "forwarded_port", guest: 80, host: 8090
+  vm1.vm.network "forwarded_port", guest: 80, host: 8090, host_ip: "127.0.0.1"
+  vm1.vm.network "private_network", ip: "192.168.33.10"
+  vm1.vm.synced_folder "/Users/ngwesseelvis/Desktop/virtualMachines", "/vagrant"
+  
+  config.vm.provider "virtualbox" do |vb|
+  vb.memory = "1024"
+  vb.gui = false
+  end
+  
+   config.vm.provision "shell", inline: <<-SHELL
+     apt-get update
+    SHELL
+  end
+
+
+
+   # Ubuntu machine 2
+
+  config.vm.define "ubuntu2" do |vm2|
+  vm2.vm.box = "bento/ubuntu-16.04"
+  vm2.vm.box_check_update = true
+  vm2.vm.network "forwarded_port", guest: 80, host: 8091
+  vm2.vm.network "forwarded_port", guest: 80, host: 8091, host_ip: "127.0.0.1"
+  vm2.vm.network "private_network", ip: "192.168.33.20"
+  vm2.vm.synced_folder "/Users/ngwesseelvis/Desktop/virtualMachines", "/vagrant"
+  
+  config.vm.provider "virtualbox" do |vb|
+  vb.memory = "1024"
+  vb.gui = false
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+     apt-get update
+    SHELL
+  end
+
+
+
+   # Ubuntu machine 3
+
+  config.vm.define "ubuntu3" do |vm3|
+  vm3.vm.box = "bento/ubuntu-16.04"
+  vm3.vm.box_check_update = true
+  vm3.vm.network "forwarded_port", guest: 80, host: 8092
+  vm3.vm.network "forwarded_port", guest: 80, host: 8092, host_ip: "127.0.0.1"
+  vm3.vm.network "private_network", ip: "192.168.33.30"
+  vm3.vm.synced_folder "/Users/ngwesseelvis/Desktop/virtualMachines", "/vagrant"
+  
+  config.vm.provider "virtualbox" do |vb|
+  vb.memory = "1024"
+  vb.gui = false
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+     apt-get update
+    SHELL
+  end
+
+  
+   # Ubuntu machine 4
+
+  config.vm.define "master" do |vm4|
+  vm4.vm.box = "bento/ubuntu-16.04"
+  vm4.vm.box_check_update = true
+  vm4.vm.network "forwarded_port", guest: 80, host: 8094
+  vm4.vm.network "forwarded_port", guest: 80, host: 8094, host_ip: "127.0.0.1"
+  vm4.vm.network "private_network", ip: "192.168.33.40"
+  vm4.vm.synced_folder "/Users/ngwesseelvis/Desktop/virtualMachines", "/vagrant"
+  
+  config.vm.provider "virtualbox" do |vb|
+  vb.memory = "1024"
+  vb.gui = false
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+     apt-get update
+    SHELL
+  end
+
+
+
+end
+
+
+
+
+
+ 
+  
