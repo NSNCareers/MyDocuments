@@ -2,7 +2,7 @@ Make sure server is created with default password digital ocean droplets
 Create same user with same password in all server
 useradd $username
 passwd $username (enter password when prompted)
-usermode -aG sudo $username (add user to sudo group)
+usermod -aG sudo $username (add user to sudo group)
 mkhomedir_helper $username (create user home directory)
 Go to main server
 ssh-keygen (generate keys)
