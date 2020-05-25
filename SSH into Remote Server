@@ -9,3 +9,25 @@ ssh-keygen (generate keys)
 ssh-copy-id $serverIp (copy public key to remote server)
 
 sudo adduser $username  => This comand creates a user along with its home directory
+
+
+
+centos
+usermod -aG wheel
+
+
+If u get access denied
+
+Log in as root
+Edit ssh config: 
+sudo nano /etc/ssh/sshd_config
+Change this line:
+PasswordAuthentication no
+to
+PasswordAuthentication yes
+Restart daemon: 
+sudo systemctl restart sshd
+
+Do ssh-copy-id:
+ssh-copy-id someuser@<my-ip>
+
