@@ -7,3 +7,5 @@ mkhomedir_helper $username (create user home directory)
 Go to main server
 ssh-keygen (generate keys)
 ssh-copy-id $serverIp (copy public key to remote server)
+
+sudo adduser $username  => This comand creates a user along with its home directory
