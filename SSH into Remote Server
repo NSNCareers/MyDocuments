@@ -33,12 +33,5 @@ ssh-copy-id someuser@<my-ip>
 
 
 
-To allow ansible master to access nodes without password
-Login as root
-enter command => visudo
-modify below
 
-root    ALL=(ALL)       ALL
-%wheel  ALL=(ALL)       NOPASSWD: ALL
-%sudo   ALL=(ALL)       NOPASSWD: ALL
 
