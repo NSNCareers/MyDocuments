@@ -1,6 +1,7 @@
 To allow ansible master to access nodes without password
-Login as root
-Create user => useradd $userName
+Login as root in node
+Create user => useradd -m $userName
+Create password
 Enter command => visudo
 Modify file by adding following line
 root    ALL=(ALL)       ALL
@@ -17,4 +18,9 @@ $userName   ALL=(ALL)       NOPASSWD: ALL
 Go to /etc/ssh/sshd_config
 Set PasswordAuthentication to Yes
 Restart => systemctl restart sshd
+
+Go to master
+login as same user
+Generate key => ssh-keygen
+Transfer id => ssh-copy-id $ip_Remote_Host
 
