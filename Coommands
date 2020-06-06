@@ -4,3 +4,5 @@ docker rmi $(docker images -a -q)
 
 List all processes => ps aux
 List a particular process => ps aux | grep nginx
+
+apt-get install build-essential
